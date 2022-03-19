@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.2.5</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Tauri API Wrapper was built to help out all types of developers to navigate the intricate Tauri WoW API. We've translated all the API endpoints into elegant C# typified Objects.</Description>
+    <Copyright>Query 2020</Copyright>
+    <PackageProjectUrl>https://github.com/Tauri-WoW-Community-Devs/TauriApiWrapper</PackageProjectUrl>
+    <PackageIcon></PackageIcon>
+    <RepositoryUrl>https://github.com/Tauri-WoW-Community-Devs/TauriApiWrapper</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>TauriWoW Api wow mop mistsofpandaria</PackageTags>
+    <PackageReleaseNotes>Added Guild Raid Endpoint</PackageReleaseNotes>
+    <Authors>Query, Rdzio, Aithne</Authors>
+    <Product>TauriWoW</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
