@@ -1,4 +1,4 @@
-# Tauri API Wrapper
+# Tauri/Stormforge API Wrapper
  **Tauri API Wrapper** was built to help out all types of developers to navigate the intricate [Tauri WoW](https://tauriwow.com/) API. We've translated all the API endpoints into elegant C# typified Objects.
 
 # How to install
