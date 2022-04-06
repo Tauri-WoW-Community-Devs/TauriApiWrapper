@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
 using TauriApiWrapper.Objects;
 using TauriApiWrapper.Objects.Requests;
@@ -18,28 +19,28 @@ namespace TauriApiWrapper
 
 
 
-        public static async Task<ApiResponse<GuildRoster>> GetGuildRosterAsync(TauriClient client, string guildName, Realm realm)
+        public static async Task<ApiResponse<GuildRoster>> GetGuildRosterAsync(TauriClient client, string guildName, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.GuildInfo, client.ApiSecret, new GuildRequest(guildName, realm));
-            return await client.CommunicateAsync<GuildRoster>(param);
+            return await client.CommunicateAsync<GuildRoster>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<GuildStats>> GetGuildStatsAsync(TauriClient client, string guildName, Realm realm)
+        public static async Task<ApiResponse<GuildStats>> GetGuildStatsAsync(TauriClient client, string guildName, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.GuildStats, client.ApiSecret, new GuildRequest(guildName, realm));
-            return await client.CommunicateAsync<GuildStats>(param);
+            return await client.CommunicateAsync<GuildStats>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<GuildBankContent>> GetGuildBankContentsAsync(TauriClient client, string guildName, Realm realm)
+        public static async Task<ApiResponse<GuildBankContent>> GetGuildBankContentsAsync(TauriClient client, string guildName, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.GuildBankContents, client.ApiSecret, new GuildRequest(guildName, realm));
-            return await client.CommunicateAsync<GuildBankContent>(param);
+            return await client.CommunicateAsync<GuildBankContent>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<GuildBankLog>> GetGuildBankLogsAsync(TauriClient client, string guildName, Realm realm)
+        public static async Task<ApiResponse<GuildBankLog>> GetGuildBankLogsAsync(TauriClient client, string guildName, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.GuildBankLogs, client.ApiSecret, new GuildRequest(guildName, realm));
-            return await client.CommunicateAsync<GuildBankLog>(param);
+            return await client.CommunicateAsync<GuildBankLog>(param, cancellationToken);
         }
 
         public static ApiResponse<GuildRoster> GetGuildRoster(TauriClient client, string guildName, Realm realm)

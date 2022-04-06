@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
 using TauriApiWrapper.Objects;
 using TauriApiWrapper.Objects.Requests;
@@ -39,22 +40,22 @@ namespace TauriApiWrapper
 
         #region Async
 
-        public static async Task<ApiResponse<AchievementFirst>> GetAchievementFirstsAsync(TauriClient client, Realm realm)
+        public static async Task<ApiResponse<AchievementFirst>> GetAchievementFirstsAsync(TauriClient client, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.AchievementFirsts, client.ApiSecret, new AchievementBaseRequest(realm));
-            return await client.CommunicateAsync<AchievementFirst>(param);
+            return await client.CommunicateAsync<AchievementFirst>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<CharacterAchievements>> GetCharacterAchievementsAsync(TauriClient client, string characterName, Realm realm)
+        public static async Task<ApiResponse<CharacterAchievements>> GetCharacterAchievementsAsync(TauriClient client, string characterName, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.CharacterAchievements, client.ApiSecret, new CharacterAchievementsRequest(characterName, realm));
-            return await client.CommunicateAsync<CharacterAchievements>(param);
+            return await client.CommunicateAsync<CharacterAchievements>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<CharacterAchievementsLoader>> GetCharacterAchievementsLoaderAsync(TauriClient client, string characterName, int categoryID, Realm realm)
+        public static async Task<ApiResponse<CharacterAchievementsLoader>> GetCharacterAchievementsLoaderAsync(TauriClient client, string characterName, int categoryID, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.AchievementsLoader, client.ApiSecret, new AchievementsLoaderRequest(characterName, categoryID, realm));
-            return await client.CommunicateAsync<CharacterAchievementsLoader>(param);
+            return await client.CommunicateAsync<CharacterAchievementsLoader>(param, cancellationToken);
         }
 
         #endregion Async

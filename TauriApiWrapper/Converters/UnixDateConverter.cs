@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using TauriApiWrapper.Extensions;
 
 namespace TauriApiWrapper.Converters
 {

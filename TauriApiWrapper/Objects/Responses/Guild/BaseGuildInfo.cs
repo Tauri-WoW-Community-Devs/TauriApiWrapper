@@ -9,6 +9,9 @@ namespace TauriApiWrapper.Objects.Responses.Guild
         [JsonProperty("guildName")]
         public string GuildName { get; set; }
 
+        [JsonProperty("guildid")]
+        public int GuildID { get; set; }
+
         [JsonProperty("titleName")]
         public string TitleName { get; set; }
 

@@ -55,8 +55,8 @@ namespace TauriApiWrapperTests
                 Assert.IsNotNull(raidlog.Response);
                 Assert.IsNotNull(raidlog.Response.Encounter);
             }
-        } 
-        
+        }
+
         [TestMethod]
         public async Task GetRaidEncounterRankings()
         {
@@ -70,6 +70,6 @@ namespace TauriApiWrapperTests
             }
         }
 
-      
+
     }
 }

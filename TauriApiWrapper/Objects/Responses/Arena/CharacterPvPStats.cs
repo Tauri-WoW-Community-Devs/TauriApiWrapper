@@ -1,41 +1,15 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using TauriApiWrapper.Enums;
 
 namespace TauriApiWrapper.Objects.Responses.Arena
 {
-    public class ArenaLadder : BaseApiResponse
-    {
-        [JsonProperty("ts")]
-        public int Ts { get; set; }
-
-        [JsonProperty("resultfrom")]
-        public int Resultfrom { get; set; }
-
-        [JsonProperty("resultcountperpage")]
-        public int ResultCountPerPage { get; set; }
-
-
-        [JsonProperty("realm")]
-        public Realm Realm { get; set; }
-
-        [JsonProperty("laddertype")]
-        public ArenaTeamFormat LadderType { get; set; }
-
-        [JsonProperty("ladder")]
-        public IEnumerable<Ladder> Ladder { get; set; }
-    }
-
-    public class Ladder
+    public sealed class CharacterPvpStats
     {
         [JsonProperty("Guid")]
-        public long Guid { get; set; }
+        public int Guid { get; set; }
 
         [JsonProperty("character-minimal-data")]
         public CharacterMinimalData CharacterMinimalData { get; set; }
-
-        [JsonProperty("realmName")]
-        public Realm RealmName { get; set; }
 
         [JsonProperty("Slot")]
         public ArenaRatingSlot Slot { get; set; }
@@ -65,6 +39,39 @@ namespace TauriApiWrapper.Objects.Responses.Arena
         public int PrevPersonalRating { get; set; }
 
         [JsonProperty("lastspecid")]
-        public int LastSpecId { get; set; }
+        public int LastSpecID { get; set; }
+
+        [JsonProperty("rank")]
+        public int Rank { get; set; }
+
+        [JsonProperty("lastspecname", NullValueHandling = NullValueHandling.Ignore)]
+        public string LastSpecName { get; set; }
+
+        [JsonProperty("lastspeciconname", NullValueHandling = NullValueHandling.Ignore)]
+        public string LastSpecIconName { get; set; }
+    }
+
+    public sealed class CharacterMinimalData
+    {
+        [JsonProperty("charname")]
+        public string CharName { get; set; }
+
+        [JsonProperty("race")]
+        public Race Race { get; set; }
+
+        [JsonProperty("class")]
+        public Class Class { get; set; }
+
+        [JsonProperty("gender")]
+        public Gender Gender { get; set; }
+
+        [JsonProperty("guildname")]
+        public string GuildName { get; set; }
+
+        [JsonProperty("level")]
+        public int Level { get; set; }
+
+        [JsonProperty("faction")]
+        public Faction Faction { get; set; }
     }
 }

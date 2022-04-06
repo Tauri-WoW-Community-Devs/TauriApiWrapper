@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
 using TauriApiWrapper.Extensions;
 using TauriApiWrapper.Objects;
@@ -41,22 +42,22 @@ namespace TauriApiWrapper
 
         #region Async
 
-        public static async Task<ApiResponse<AuctionHouseInfoResponse>> GetAuctionHouseInfoAsync(TauriClient client, Realm realm)
+        public static async Task<ApiResponse<AuctionHouseInfoResponse>> GetAuctionHouseInfoAsync(TauriClient client, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.AuctionsInfo, client.ApiSecret, new AuctionHouseBaseRequest(realm.ToMasterRealm()));
-            return await client.CommunicateAsync<AuctionHouseInfoResponse>(param);
+            return await client.CommunicateAsync<AuctionHouseInfoResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<AuctionHouseResponse>> GetAllAuctionsDataAsync(TauriClient client, Realm realm)
+        public static async Task<ApiResponse<AuctionHouseResponse>> GetAllAuctionsDataAsync(TauriClient client, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.AuctionsData, client.ApiSecret, new AuctionHouseBaseRequest(realm.ToMasterRealm()));
-            return await client.CommunicateAsync<AuctionHouseResponse>(param);
+            return await client.CommunicateAsync<AuctionHouseResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<AuctionHouseResponse>> GetAuctionsByItemIDAsync(TauriClient client, int itemID, Realm realm)
+        public static async Task<ApiResponse<AuctionHouseResponse>> GetAuctionsByItemIDAsync(TauriClient client, int itemID, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.AuctionItemData, client.ApiSecret, new AuctionHouseItemPriceRequest(itemID, realm.ToMasterRealm()));
-            return await client.CommunicateAsync<AuctionHouseResponse>(param);
+            return await client.CommunicateAsync<AuctionHouseResponse>(param, cancellationToken);
         }
 
         #endregion Async

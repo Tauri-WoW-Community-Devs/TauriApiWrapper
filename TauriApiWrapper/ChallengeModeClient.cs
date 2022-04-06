@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
 using TauriApiWrapper.Objects;
 using TauriApiWrapper.Objects.Requests;
@@ -34,16 +35,16 @@ namespace TauriApiWrapper
 
         #region Async
 
-        public static async Task<ApiResponse<ChallengeIndex>> GetChallengeIndexAsync(TauriClient client, Realm realm)
+        public static async Task<ApiResponse<ChallengeIndex>> GetChallengeIndexAsync(TauriClient client, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.ChallengeIndex, client.ApiSecret, new ChallengeModeBaseRequest(realm));
-            return await client.CommunicateAsync<ChallengeIndex>(param);
+            return await client.CommunicateAsync<ChallengeIndex>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<ChallengeLeaderboard>> GetChallengeLeaderboardAsync(TauriClient client, int mapID, Realm realm)
+        public static async Task<ApiResponse<ChallengeLeaderboard>> GetChallengeLeaderboardAsync(TauriClient client, int mapID, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.ChallengeLeaderboard, client.ApiSecret, new ChallengeModeLeaderboardRequest(mapID, realm));
-            return await client.CommunicateAsync<ChallengeLeaderboard>(param);
+            return await client.CommunicateAsync<ChallengeLeaderboard>(param, cancellationToken);
         }
 
         #endregion Async

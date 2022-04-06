@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
 using TauriApiWrapper.Objects;
 using TauriApiWrapper.Objects.Requests;
@@ -68,46 +69,46 @@ namespace TauriApiWrapper
 
         #region Async
 
-        public static async Task<ApiResponse<RaidMaps>> GetRaidMapsAsync(TauriClient client, Realm realm)
+        public static async Task<ApiResponse<RaidMaps>> GetRaidMapsAsync(TauriClient client, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidMaps, client.ApiSecret, new RaidMapRequest(realm));
-            return await client.CommunicateAsync<RaidMaps>(param);
+            return await client.CommunicateAsync<RaidMaps>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidLogsResponse>> GetLatestRaidsAsync(TauriClient client, Realm realm,  int? mapID = null, long? fromID = null, int limit = 50)
+        public static async Task<ApiResponse<RaidLogsResponse>> GetLatestRaidsAsync(TauriClient client, Realm realm, int? mapID = null, long? fromID = null, int limit = 50, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.LatestRaids, client.ApiSecret, new RaidListRequest(realm, mapID, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidLogsResponse>(param);
+            return await client.CommunicateAsync<RaidLogsResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidLog>> GetRaidLogFromIDAsync(TauriClient client, int fromID, Realm realm)
+        public static async Task<ApiResponse<RaidLog>> GetRaidLogFromIDAsync(TauriClient client, int fromID, Realm realm, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidLog, client.ApiSecret, new RaidLogRequest(fromID, realm));
-            return await client.CommunicateAsync<RaidLog>(param);
+            return await client.CommunicateAsync<RaidLog>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidLog>> GetRaidLogFromPlayerNameAsync(TauriClient client, string name, Realm realm, long? fromID = null, int limit = 0)
+        public static async Task<ApiResponse<RaidLogsResponse>> GetRaidLogsFromPlayerNameAsync(TauriClient client, string name, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidPlayer, client.ApiSecret, new PlayerRaidLogRequest(name, realm, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidLog>(param);
+            return await client.CommunicateAsync<RaidLogsResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidLogsResponse>> GetRaidLogFromGuildNameAsync(TauriClient client, string name, Realm realm, long? fromID = null, int limit = 0)
+        public static async Task<ApiResponse<RaidLogsResponse>> GetRaidLogFromGuildNameAsync(TauriClient client, string name, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidGuild, client.ApiSecret, new GuildRaidLogRequest(name, realm, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidLogsResponse>(param);
+            return await client.CommunicateAsync<RaidLogsResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0)
+        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidRankEcounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param);
+            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidGuildEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0)
+        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidGuildEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidGuildRankEncounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param);
+            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param, cancellationToken);
         }
         #endregion Async
     }

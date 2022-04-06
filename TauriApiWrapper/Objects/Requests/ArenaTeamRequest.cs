@@ -5,9 +5,9 @@ namespace TauriApiWrapper.Objects.Requests
 {
     internal class ArenaTeamRequest : ArenaBaseRequest
     {
-        public ArenaTeamRequest(int teamSize, string teamName, Realm realm) : base(realm)
+        public ArenaTeamRequest(Realm realm, ArenaTeamFormat teamSize, string teamName) : base(realm)
         {
-            TeamSize = teamSize;
+            TeamSize = (int)teamSize;
             TeamName = teamName;
         }
 

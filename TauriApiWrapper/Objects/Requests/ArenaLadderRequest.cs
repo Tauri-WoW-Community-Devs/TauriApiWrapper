@@ -5,9 +5,9 @@ namespace TauriApiWrapper.Objects.Requests
 {
     internal class ArenaLadderRequest : ArenaBaseRequest
     {
-        public ArenaLadderRequest(int teamSize, Realm realm) : base(realm)
+        public ArenaLadderRequest(ArenaTeamFormat teamSize, Realm realm) : base(realm)
         {
-            TeamSize = teamSize;
+            TeamSize = (int)teamSize;
         }
 
         [JsonProperty("ts")]

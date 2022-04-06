@@ -2,7 +2,6 @@
 using System;
 using TauriApiWrapper.Converters;
 
-
 namespace TauriApiWrapper.Objects.Responses.Achievement
 {
     public sealed class CharacterAchievement

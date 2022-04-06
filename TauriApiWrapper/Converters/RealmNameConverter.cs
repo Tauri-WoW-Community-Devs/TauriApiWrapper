@@ -24,7 +24,7 @@ namespace TauriApiWrapper.Converters
                 "[EN] Evermoon" => Realm.Evermoon,
                 "[HU] Tauri WoW Server" => Realm.Tauri,
                 "[HU] Warriors of Darkness" => Realm.WoD,
-                _ => Realm.Evermoon,
+                _ => Realm.Mistblade,
             };
         }
 

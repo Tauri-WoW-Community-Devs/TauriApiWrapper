@@ -1,39 +1,55 @@
 ﻿using Newtonsoft.Json;
-using TauriApiWrapper.Enums;
+using System;
+using TauriApiWrapper.Converters;
 
 namespace TauriApiWrapper.Objects.Responses.Arena
 {
     public sealed class ArenaGame : BaseApiResponse
     {
-        [JsonProperty("matchStart")]
-        public int MatchStart { get; set; }
+        [JsonProperty("matchid")]
+        public int MatchID { get; set; }
 
-        [JsonProperty("matchLength")]
-        public int MatchLength { get; set; }
+        [JsonProperty("mapid")]
+        public int MapID { get; set; }
 
-        [JsonProperty("mapName")]
+        [JsonProperty("mapname")]
         public string MapName { get; set; }
 
-        [JsonProperty("realm")]
-        public Realm Realm { get; set; }
+        [JsonProperty("winner")]
+        public long Winner { get; set; }
 
-        [JsonProperty("winnerTeam")]
-        public string WinnerTeam { get; set; }
+        [JsonProperty("bgtype")]
+        public int BgType { get; set; }
 
-        [JsonProperty("winnerRating")]
-        public int WinnerRating { get; set; }
+        [JsonProperty("isranked")]
+        public bool IsTanked { get; set; }
 
-        [JsonProperty("winnerNetRating")]
-        public int WinnerNetRating { get; set; }
+        [JsonProperty("losermmravg")]
+        public int LoserMmrAvg { get; set; }
 
-        [JsonProperty("looserTeam")]
-        public string LooserTeam { get; set; }
+        [JsonProperty("winnermmravg")]
+        public int WinnerMmrAvg { get; set; }
 
-        [JsonProperty("looserRating")]
-        public int LooserRating { get; set; }
+        [JsonProperty("loserpersonalavg")]
+        public int LoserPersonalAvg { get; set; }
 
-        [JsonProperty("looserNetRating")]
-        public int LooserNetRating { get; set; }
+        [JsonProperty("winnerpersonalavg")]
+        public int WinnerPersonalAvg { get; set; }
+
+        [JsonProperty("starttime"), JsonConverter(typeof(UnixDateConverter))]
+        public DateTime StartTime { get; set; }
+
+        [JsonProperty("length"), JsonConverter(typeof(TimeSpanMillisecondsConverter))]
+        public TimeSpan Duration { get; set; }
+
+        [JsonProperty("side0")]
+        public int Side0 { get; set; }
+
+        [JsonProperty("side1")]
+        public int Side1 { get; set; }
+
+        [JsonProperty("playerSide")]
+        public int PlayerSide { get; set; }
 
         [JsonProperty("matchMembers")]
         public ArenaGameMatchMembers MatchMembers { get; set; }

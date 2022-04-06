@@ -2,7 +2,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using TauriApiWrapper;
 using TauriApiWrapper.Objects;
-using TauriApiWrapper.Objects.Responses.Character;
 using TauriApiWrapper.Objects.Responses.Item;
 
 namespace TauriApiWrapperTests
@@ -22,7 +21,7 @@ namespace TauriApiWrapperTests
                 Assert.IsTrue(returnData.IsSuccess);
             }
         }
-        
+
 
         [TestMethod]
         public void GetItemByIds()

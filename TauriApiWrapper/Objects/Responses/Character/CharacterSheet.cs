@@ -6,7 +6,7 @@ using TauriApiWrapper.Objects.Responses.Dungeon;
 
 namespace TauriApiWrapper.Objects.Responses.Character
 {
-    public sealed class CharacterSheet : CharacterData
+    public class CharacterSheet : CharacterData
     {
         [JsonProperty("name")]
         public new string Name { get; set; }

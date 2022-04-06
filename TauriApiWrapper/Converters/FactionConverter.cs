@@ -22,7 +22,8 @@ namespace TauriApiWrapper.Converters
             {
                 "Horde" => Faction.Horde,
                 "Alliance" => Faction.Alliance,
-                _ => throw new NotImplementedException("Unexpected realm name"),
+                "Neutral" => Faction.Neutral,
+                _ => throw new NotImplementedException("Unexpected faction name " + value),
             };
         }
 

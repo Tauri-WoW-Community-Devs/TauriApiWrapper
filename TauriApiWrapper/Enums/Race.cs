@@ -28,6 +28,6 @@
         Gilnean = 23,
         Pandaren_Neutral = 24,
         Pandaren_Alliance = 25,
-        Pandaren_Horde  = 26
+        Pandaren_Horde = 26
     }
 }

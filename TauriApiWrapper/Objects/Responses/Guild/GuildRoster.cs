@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TauriApiWrapper.Objects.Responses.Guild
 {
@@ -10,5 +11,11 @@ namespace TauriApiWrapper.Objects.Responses.Guild
 
         [JsonProperty("gRanks")]
         public Dictionary<string, GuildRank> GuildRanks { get; set; }
+
+        public GuildPlayer GetGuildMaster()
+        {
+            return GuildList.Values.Where(x => x.GuildRank == 0).SingleOrDefault();
+        }
+
     }
 }

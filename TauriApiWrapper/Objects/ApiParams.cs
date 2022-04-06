@@ -38,6 +38,11 @@ namespace TauriApiWrapper.Objects
             });
         }
 
+        public override string ToString()
+        {
+            return ToJson();
+        }
+
         #endregion Public Methods
     }
 }

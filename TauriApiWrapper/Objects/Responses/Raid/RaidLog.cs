@@ -68,7 +68,28 @@ namespace TauriApiWrapper.Objects.Responses.Raid
 
         [JsonProperty("members")]
         public List<RaidMember> Members { get; set; }
+
+
+        [JsonProperty("items", NullValueHandling = NullValueHandling.Ignore)]
+        public List<RaidLogLoot> Items { get; set; }
+
     }
+
+    public class RaidLogLoot
+    {
+        [JsonProperty("itemid", NullValueHandling = NullValueHandling.Ignore)]
+        public int Itemid { get; set; }
+
+        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
+        public int Count { get; set; }
+
+        [JsonProperty("random_prop", NullValueHandling = NullValueHandling.Ignore)]
+        public int RandomProp { get; set; }
+
+        [JsonProperty("random_suffix", NullValueHandling = NullValueHandling.Ignore)]
+        public int RandomSuffix { get; set; }
+    }
+
 
 
 }

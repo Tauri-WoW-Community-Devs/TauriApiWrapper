@@ -1,5 +1,6 @@
 ﻿using System;
 using TauriApiWrapper.Attributes;
+using TauriApiWrapper.Code;
 using TauriApiWrapper.Enums;
 
 namespace TauriApiWrapper.Extensions
@@ -41,6 +42,11 @@ namespace TauriApiWrapper.Extensions
                .GetCustomAttributes(typeof(ExpansionAttribute), false);
 
             return attributes.Length > 0 ? attributes[0].Expansion : Expansion.Undefined;
+        }
+
+        public static ArenaTeamFormat GetArenaTeamFormat(this string val)
+        {
+            return ArenaFormatConverter.GetArenaTeamFormat(val);
         }
     }
 }

@@ -10,5 +10,8 @@ namespace TauriApiWrapper.Objects.Responses.Guild
 
         [JsonProperty("rank_name")]
         public string RankName { get; set; }
+
+        [JsonProperty("rank")]
+        public int GuildRank { get; set; }
     }
 }

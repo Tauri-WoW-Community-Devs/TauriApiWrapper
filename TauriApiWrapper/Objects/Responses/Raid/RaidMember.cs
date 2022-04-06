@@ -61,5 +61,29 @@ namespace TauriApiWrapper.Objects.Responses.Raid
 
         [JsonProperty("talents")]
         public string Talents { get; set; }
+
+        [JsonProperty("trinket_0", NullValueHandling = NullValueHandling.Ignore)]
+        public RaidMemberTrinket Trinket0 { get; set; }
+
+        [JsonProperty("trinket_1", NullValueHandling = NullValueHandling.Ignore)]
+        public RaidMemberTrinket Trinket1 { get; set; }
+    }
+
+    public class RaidMemberTrinket
+    {
+        [JsonProperty("entry", NullValueHandling = NullValueHandling.Ignore)]
+        public int Entry { get; set; }
+
+        [JsonProperty("icon", NullValueHandling = NullValueHandling.Ignore)]
+        public string Icon { get; set; }
+
+        [JsonProperty("rarity", NullValueHandling = NullValueHandling.Ignore)]
+        public int Rarity { get; set; }
+
+        [JsonProperty("ilevel", NullValueHandling = NullValueHandling.Ignore)]
+        public int Ilevel { get; set; }
+
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
     }
 }
