@@ -27,8 +27,8 @@ namespace TauriApiWrapper
                 _client.Timeout = timeout;
             }
 
-            ProductInfoHeaderValue productValue = new ProductInfoHeaderValue("StormforgeLogs.ApiWrapper", GetType().Assembly.GetName().Version.ToString());
-            ProductInfoHeaderValue commentValue = new ProductInfoHeaderValue("(+https://github.com/Tauri-WoW-Community-Devs/StormforgeLogs.ApiWrapper)");
+            ProductInfoHeaderValue productValue = new ProductInfoHeaderValue("TauriWoW.ApiWrapper", GetType().Assembly.GetName().Version.ToString());
+            ProductInfoHeaderValue commentValue = new ProductInfoHeaderValue("(+https://github.com/Tauri-WoW-Community-Devs/TauriApiWrapper)");
 
             _client.DefaultRequestHeaders.UserAgent.Add(productValue);
             _client.DefaultRequestHeaders.UserAgent.Add(commentValue);
