@@ -20,5 +20,8 @@ namespace TauriApiWrapper.Enums
 
         [Name("Crystalsong"), Expansion(Expansion.WrathOfTheLichKing)]
         Crystalsong = 5,
+        
+        [Name("Fordring"), Expansion(Expansion.WrathOfTheLichKing)]
+        Fordring = 7
     }
 }
