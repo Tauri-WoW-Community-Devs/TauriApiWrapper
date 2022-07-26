@@ -15,4 +15,4 @@ We love pull requests, but if you're going to submit one, make sure its coming w
 
  - [Query](https://github.com/query-wow)
  - [Rdzio](https://github.com/Rdzio)
- - [Aithne](https://github.com/Zerewa)
+ - [Aithne](https://github.com/Aithne99)
