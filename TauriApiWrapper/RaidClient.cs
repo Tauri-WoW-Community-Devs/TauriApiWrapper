@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TauriApiWrapper.Enums;
+using TauriApiWrapper.Extensions;
 using TauriApiWrapper.Objects;
 using TauriApiWrapper.Objects.Requests;
 using TauriApiWrapper.Objects.Responses.Raid;
@@ -23,7 +25,7 @@ namespace TauriApiWrapper
 
         #region Sync
 
-        public static ApiResponse<RaidMaps> GetRaidMaps(TauriClient client, Realm realm = Realm.Evermoon)
+        public static ApiResponse<RaidMaps> GetRaidMaps(TauriClient client, Realm realm)
         {
             ApiParams param = new ApiParams(Endpoints.RaidMaps, client.ApiSecret, new RaidMapRequest(realm));
             return client.Communicate<RaidMaps>(param);
@@ -55,14 +57,12 @@ namespace TauriApiWrapper
 
         public static ApiResponse<RaidEncounterRankingResponse> GetRaidEncounterRanking(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0)
         {
-            ApiParams param = new ApiParams(Endpoints.RaidRankEcounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
-            return client.Communicate<RaidEncounterRankingResponse>(param);
+            return GetRaidEncounterRankingAsync(client, encounter, difficulty, realm, fromID, limit).GetAwaiter().GetResult();
         }
 
-        public static ApiResponse<RaidEncounterRankingResponse> GetRaidGuildEncounterRanking(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0)
+        public static ApiResponse<RaidEncounterRankingResponse> GetRaidGuildEncounterRanking(TauriClient client, int encounter, OldRaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0)
         {
-            ApiParams param = new ApiParams(Endpoints.RaidGuildRankEncounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
-            return client.Communicate<RaidEncounterRankingResponse>(param);
+            return GetRaidEncounterRankingAsync(client, encounter, difficulty, realm, fromID, limit).GetAwaiter().GetResult();
         }
 
         #endregion Sync
@@ -99,17 +99,42 @@ namespace TauriApiWrapper
             return await client.CommunicateAsync<RaidLogsResponse>(param, cancellationToken);
         }
 
+
         public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
+        {
+            if (realm.GetRealmExpansion() < Expansion.MistsOfPandaria)
+                throw new InvalidOperationException("RaidDifficulty cannot be used for expansions more older than Cataclysm");
+
+            return await _GetRaidEncounterRankingAsync(client, encounter, difficulty, realm, fromID, limit, cancellationToken);
+        }
+
+        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidEncounterRankingAsync(TauriClient client, int encounter, OldRaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
+        {
+            if (realm.GetRealmExpansion() < Expansion.MistsOfPandaria)
+                throw new InvalidOperationException("RaidDifficulty cannot be used for expansions more recent than Cataclysm");
+
+            return await _GetRaidEncounterRankingAsync(client, encounter, difficulty, realm, fromID, limit, cancellationToken);
+        }
+
+        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidGuildEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
+        {
+            return await _GetRaidGuildEncounterRankingAsync(client, encounter, (Enum)difficulty, realm, fromID, limit, cancellationToken);
+        }
+
+        private static async Task<ApiResponse<RaidEncounterRankingResponse>> _GetRaidGuildEncounterRankingAsync(TauriClient client, int encounter, Enum difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
+        {
+            ApiParams param = new ApiParams(Endpoints.RaidGuildRankEncounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
+            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param, cancellationToken);
+        }
+
+
+        private static async Task<ApiResponse<RaidEncounterRankingResponse>> _GetRaidEncounterRankingAsync(TauriClient client, int encounter, Enum difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
         {
             ApiParams param = new ApiParams(Endpoints.RaidRankEcounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
             return await client.CommunicateAsync<RaidEncounterRankingResponse>(param, cancellationToken);
         }
 
-        public static async Task<ApiResponse<RaidEncounterRankingResponse>> GetRaidGuildEncounterRankingAsync(TauriClient client, int encounter, RaidDifficulty difficulty, Realm realm, long? fromID = null, int limit = 0, CancellationToken cancellationToken = default)
-        {
-            ApiParams param = new ApiParams(Endpoints.RaidGuildRankEncounter, client.ApiSecret, new EncounterRankingRequest(encounter, difficulty, realm, fromID: fromID, limit: limit));
-            return await client.CommunicateAsync<RaidEncounterRankingResponse>(param, cancellationToken);
-        }
+
         #endregion Async
     }
 }
