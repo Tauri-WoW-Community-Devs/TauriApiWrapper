@@ -313,5 +313,8 @@ namespace TauriApiWrapper.Objects.Responses.Item
 
         [JsonProperty("useenchantment")]
         public string UseEnchantment { get; set; }
+        
+        [JsonProperty("UsedProprerty")]
+        public int UsedProprerty { get; set; }
     }
 }
