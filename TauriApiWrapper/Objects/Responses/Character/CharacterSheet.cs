@@ -15,7 +15,7 @@ namespace TauriApiWrapper.Objects.Responses.Character
         public Realm Realm { get; set; }
 
         [JsonProperty("guid")]
-        public int Guid { get; set; }
+        public ulong Guid { get; set; }
 
         //[JsonProperty("name")]
         //public new string Name { get; set; }
